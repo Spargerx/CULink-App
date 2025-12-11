@@ -14,6 +14,7 @@ class _LoginScreenState extends State<LoginScreen>
   late AnimationController _controller;
   late Animation<Alignment> _topAlignmentAnimation;
   late Animation<Alignment> _bottomAlignmentAnimation;
+  bool _isPasswordVisible = false;
 
   @override
   void initState() {
@@ -183,21 +184,34 @@ class _LoginScreenState extends State<LoginScreen>
                     const SizedBox(height: 15),
 
                     // Password TextField
-                    const TextField(
-                      obscureText: true,
-                      style: TextStyle(color: Colors.white),
+                    TextField(
+                      obscureText: !_isPasswordVisible,
+                      style: const TextStyle(color: Colors.white),
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white10,
                         hintText: 'Password',
-                        hintStyle: TextStyle(color: Colors.white60),
-                        border: OutlineInputBorder(
+                        hintStyle: const TextStyle(color: Colors.white60),
+                        border: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(15)),
                           borderSide: BorderSide.none,
                         ),
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.lock_outline,
                           color: Colors.white70,
+                        ),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            _isPasswordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: Colors.white70,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _isPasswordVisible = !_isPasswordVisible;
+                            });
+                          },
                         ),
                       ),
                     ),
