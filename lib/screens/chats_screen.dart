@@ -9,6 +9,7 @@ import '../theme/theme_provider.dart';
 import '../widgets/segmented_control.dart';
 import '../widgets/pinned_contacts.dart';
 import '../widgets/chat_list_tile.dart';
+import 'conversation_screen.dart';
 
 class ChatsScreen extends StatefulWidget {
   const ChatsScreen({super.key});
@@ -145,6 +146,34 @@ class _ChatsScreenState extends State<ChatsScreen> {
     ),
   ];
 
+  void _navigateToConversation(ChatData chat) {
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            ConversationScreen(
+              chatId: chat.id,
+              name: chat.name,
+              avatarUrl: chat.avatarUrl,
+              activityStatus: chat.status,
+              activityIcon: chat.status == 'Active now' ? '🟢' : null,
+            ),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return SlideTransition(
+            position: Tween<Offset>(begin: const Offset(1, 0), end: Offset.zero)
+                .animate(
+                  CurvedAnimation(
+                    parent: animation,
+                    curve: Curves.easeOutCubic,
+                  ),
+                ),
+            child: child,
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 300),
+      ),
+    );
+  }
+
   @override
   void dispose() {
     _searchController.dispose();
@@ -229,7 +258,10 @@ class _ChatsScreenState extends State<ChatsScreen> {
                     return ChatListTile(
                       chat: chats[index],
                       onTap: () {
-                        // Handle chat tap
+                        // Only navigate for Direct messages (not groups)
+                        if (_segmentIndex == 0) {
+                          _navigateToConversation(chats[index]);
+                        }
                       },
                       onArchive: () {
                         // Handle archive
