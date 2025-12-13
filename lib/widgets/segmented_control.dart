@@ -27,6 +27,7 @@ class _SegmentedControlState extends State<SegmentedControl>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _slideAnimation;
+  bool _isInitialized = false;
 
   @override
   void initState() {
@@ -35,27 +36,28 @@ class _SegmentedControlState extends State<SegmentedControl>
       vsync: this,
       duration: const Duration(milliseconds: 250),
     );
-    _updateAnimation();
+    // Initialize with starting position
+    final initialPosition = widget.selectedIndex / widget.segments.length;
+    _slideAnimation = AlwaysStoppedAnimation(initialPosition);
+    _isInitialized = true;
   }
 
   @override
   void didUpdateWidget(SegmentedControl oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.selectedIndex != widget.selectedIndex) {
-      _updateAnimation();
-      _controller.forward(from: 0);
+    if (oldWidget.selectedIndex != widget.selectedIndex && _isInitialized) {
+      _animateToPosition();
     }
   }
 
-  void _updateAnimation() {
+  void _animateToPosition() {
+    final currentPosition = _slideAnimation.value;
     final targetPosition = widget.selectedIndex / widget.segments.length;
-    _slideAnimation =
-        Tween<double>(
-          begin: _slideAnimation.value,
-          end: targetPosition,
-        ).animate(
+    _slideAnimation = Tween<double>(begin: currentPosition, end: targetPosition)
+        .animate(
           CurvedAnimation(parent: _controller, curve: Curves.easeInOutCubic),
         );
+    _controller.forward(from: 0);
   }
 
   @override
