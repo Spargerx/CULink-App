@@ -8,6 +8,7 @@ import '../theme/theme_provider.dart';
 import '../widgets/floating_nav_bar.dart';
 import 'home_feed_content.dart';
 import 'connections_screen.dart';
+import 'chats_screen.dart';
 
 class MainShellScreen extends StatefulWidget {
   const MainShellScreen({super.key});
@@ -33,7 +34,7 @@ class _MainShellScreenState extends State<MainShellScreen> {
             children: const [
               HomeFeedContent(),
               ConnectionsScreen(),
-              _PlaceholderScreen(title: 'Messages'),
+              ChatsScreen(),
               _PlaceholderScreen(title: 'Settings'),
             ],
           ),
