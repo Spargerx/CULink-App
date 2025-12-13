@@ -5,7 +5,7 @@
 
 import 'package:flutter/material.dart';
 import '../theme/theme_provider.dart';
-import 'home_feed_screen.dart';
+import 'main_shell_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -62,7 +62,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
         Navigator.of(context).pushReplacement(
           PageRouteBuilder(
             pageBuilder: (context, animation, secondaryAnimation) =>
-                const HomeFeedScreen(),
+                const MainShellScreen(),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
                   return FadeTransition(
