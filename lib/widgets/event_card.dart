@@ -38,7 +38,10 @@ class EventCard extends StatelessWidget {
           onTap: onTap,
           child: Container(
             constraints: BoxConstraints(
-              maxWidth: MediaQuery.of(context).size.width * 0.8,
+              // Use 80% of width but cap at 320px for wide screens
+              maxWidth: MediaQuery.of(context).size.width * 0.8 > 320
+                  ? 320
+                  : MediaQuery.of(context).size.width * 0.8,
             ),
             decoration: BoxDecoration(
               color: Colors.white,
