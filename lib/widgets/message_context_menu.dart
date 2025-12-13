@@ -279,30 +279,41 @@ class ReactionPicker extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.cuTheme;
     final screenSize = MediaQuery.of(context).size;
+    final padding = MediaQuery.of(context).padding;
 
-    // Calculate picker width (approximately)
-    const pickerWidth = 280.0;
-    const pickerHeight = 50.0;
+    // Picker dimensions - slightly larger estimate to be safe
+    const pickerWidth = 300.0;
+    const pickerHeight = 56.0;
+    const margin = 16.0;
 
-    // Calculate position - center horizontally near the message, above or below
-    double left = position.dx - (pickerWidth / 2);
-    double top = position.dy - pickerHeight - 20; // Above the message
+    // Available width considering safe areas
+    final availableWidth = screenSize.width - (margin * 2);
 
-    // Adjust horizontal position if off screen
-    if (left < 20) left = 20;
-    if (left + pickerWidth > screenSize.width - 20) {
-      left = screenSize.width - pickerWidth - 20;
+    // Calculate horizontal position - prioritize keeping it fully on screen
+    double left;
+    if (pickerWidth >= availableWidth) {
+      // Screen too narrow, center the picker
+      left = (screenSize.width - pickerWidth) / 2;
+    } else {
+      // Try to center on tap position
+      left = position.dx - (pickerWidth / 2);
+      // Clamp to stay within screen bounds
+      left = left.clamp(margin, screenSize.width - pickerWidth - margin);
     }
 
-    // If too close to top, show below the message
-    if (top < 100) {
+    // Calculate vertical position - above the tap point by default
+    double top = position.dy - pickerHeight - 20;
+
+    // If too close to top, show below
+    if (top < padding.top + 80) {
       top = position.dy + 20;
     }
 
-    // If too close to bottom, adjust
-    if (top + pickerHeight > screenSize.height - 100) {
-      top = screenSize.height - pickerHeight - 100;
-    }
+    // Clamp vertical position to stay on screen
+    top = top.clamp(
+      padding.top + margin,
+      screenSize.height - pickerHeight - padding.bottom - margin,
+    );
 
     return GestureDetector(
       onTap: onDismiss,
