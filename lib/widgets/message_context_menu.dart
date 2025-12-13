@@ -72,15 +72,35 @@ class _MessageContextMenuState extends State<MessageContextMenu>
   Widget build(BuildContext context) {
     final theme = context.cuTheme;
     final screenSize = MediaQuery.of(context).size;
+    final padding = MediaQuery.of(context).padding;
 
-    // Calculate position to keep menu on screen
-    double left = widget.position.dx - 80;
-    double top = widget.position.dy - 60;
+    // Menu dimensions - estimate based on content
+    const menuWidth = 160.0;
+    const menuHeight = 180.0; // Approximate height with 4 items
+    const margin = 16.0;
 
-    // Adjust if too close to edges
-    if (left < 20) left = 20;
-    if (left + 160 > screenSize.width - 20) left = screenSize.width - 180;
-    if (top < 100) top = widget.position.dy + 20;
+    // Calculate horizontal position
+    double left = widget.position.dx - (menuWidth / 2);
+    left = left.clamp(margin, screenSize.width - menuWidth - margin);
+
+    // Calculate vertical position - try above the tap point first
+    double top = widget.position.dy - menuHeight - 10;
+
+    // If too close to top, show below the tap point
+    if (top < padding.top + 60) {
+      top = widget.position.dy + 10;
+    }
+
+    // If still going off bottom, clamp it
+    if (top + menuHeight > screenSize.height - padding.bottom - margin) {
+      top = screenSize.height - menuHeight - padding.bottom - margin;
+    }
+
+    // Final clamp to ensure it stays on screen
+    top = top.clamp(
+      padding.top + margin,
+      screenSize.height - menuHeight - margin,
+    );
 
     return GestureDetector(
       onTap: _dismiss,
