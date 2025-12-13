@@ -103,71 +103,74 @@ class _MessageContextMenuState extends State<MessageContextMenu>
                     ),
                   );
                 },
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.9),
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(
-                          color: theme.mutedPrimary.withValues(alpha: 0.3),
+                child: Material(
+                  color: Colors.transparent,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.9),
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(
+                            color: theme.mutedPrimary.withValues(alpha: 0.3),
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.1),
+                              blurRadius: 20,
+                              offset: const Offset(0, 8),
+                            ),
+                          ],
                         ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.1),
-                            blurRadius: 20,
-                            offset: const Offset(0, 8),
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          _MenuButton(
-                            icon: Icons.reply_rounded,
-                            label: 'Reply',
-                            onTap: () {
-                              HapticFeedback.selectionClick();
-                              widget.onReply?.call();
-                              _dismiss();
-                            },
-                          ),
-                          _MenuDivider(),
-                          _MenuButton(
-                            icon: Icons.emoji_emotions_outlined,
-                            label: 'React',
-                            onTap: () {
-                              HapticFeedback.selectionClick();
-                              widget.onReact?.call();
-                              _dismiss();
-                            },
-                          ),
-                          _MenuDivider(),
-                          _MenuButton(
-                            icon: Icons.copy_rounded,
-                            label: 'Copy',
-                            onTap: () {
-                              HapticFeedback.selectionClick();
-                              widget.onCopy?.call();
-                              _dismiss();
-                            },
-                          ),
-                          if (widget.isOwnMessage) ...[
-                            _MenuDivider(),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
                             _MenuButton(
-                              icon: Icons.delete_outline_rounded,
-                              label: 'Delete',
-                              isDestructive: true,
+                              icon: Icons.reply_rounded,
+                              label: 'Reply',
                               onTap: () {
-                                HapticFeedback.mediumImpact();
-                                widget.onDelete?.call();
+                                HapticFeedback.selectionClick();
+                                widget.onReply?.call();
                                 _dismiss();
                               },
                             ),
+                            _MenuDivider(),
+                            _MenuButton(
+                              icon: Icons.emoji_emotions_outlined,
+                              label: 'React',
+                              onTap: () {
+                                HapticFeedback.selectionClick();
+                                widget.onReact?.call();
+                                _dismiss();
+                              },
+                            ),
+                            _MenuDivider(),
+                            _MenuButton(
+                              icon: Icons.copy_rounded,
+                              label: 'Copy',
+                              onTap: () {
+                                HapticFeedback.selectionClick();
+                                widget.onCopy?.call();
+                                _dismiss();
+                              },
+                            ),
+                            if (widget.isOwnMessage) ...[
+                              _MenuDivider(),
+                              _MenuButton(
+                                icon: Icons.delete_outline_rounded,
+                                label: 'Delete',
+                                isDestructive: true,
+                                onTap: () {
+                                  HapticFeedback.mediumImpact();
+                                  widget.onDelete?.call();
+                                  _dismiss();
+                                },
+                              ),
+                            ],
                           ],
-                        ],
+                        ),
                       ),
                     ),
                   ),
@@ -279,38 +282,41 @@ class ReactionPicker extends StatelessWidget {
       child: Container(
         color: Colors.transparent,
         child: Center(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(theme.radiusFull),
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-              child: Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: theme.spacingM,
-                  vertical: theme.spacingS,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.95),
-                  borderRadius: BorderRadius.circular(theme.radiusFull),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.15),
-                      blurRadius: 30,
-                      offset: const Offset(0, 10),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: reactions.map((emoji) {
-                    return _ReactionButton(
-                      emoji: emoji,
-                      onTap: () {
-                        HapticFeedback.selectionClick();
-                        onReactionSelected?.call(emoji);
-                        onDismiss();
-                      },
-                    );
-                  }).toList(),
+          child: Material(
+            color: Colors.transparent,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(theme.radiusFull),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: theme.spacingM,
+                    vertical: theme.spacingS,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.95),
+                    borderRadius: BorderRadius.circular(theme.radiusFull),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.15),
+                        blurRadius: 30,
+                        offset: const Offset(0, 10),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: reactions.map((emoji) {
+                      return _ReactionButton(
+                        emoji: emoji,
+                        onTap: () {
+                          HapticFeedback.selectionClick();
+                          onReactionSelected?.call(emoji);
+                          onDismiss();
+                        },
+                      );
+                    }).toList(),
+                  ),
                 ),
               ),
             ),
