@@ -40,6 +40,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
   // Context menu state
   OverlayEntry? _contextMenuOverlay;
   int? _selectedMessageIndex;
+  Offset _lastTapPosition = Offset.zero;
   String? _replyingToText;
 
   // Sample messages - replace with actual data
@@ -174,6 +175,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
 
     HapticFeedback.mediumImpact();
     setState(() => _selectedMessageIndex = index);
+    _lastTapPosition = position;
 
     _contextMenuOverlay = OverlayEntry(
       builder: (context) => MessageContextMenu(
@@ -213,6 +215,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
     _contextMenuOverlay?.remove();
     _contextMenuOverlay = OverlayEntry(
       builder: (context) => ReactionPicker(
+        position: _lastTapPosition,
         onReactionSelected: (emoji) {
           final item = _messages[index];
           if (item is MessageData) {

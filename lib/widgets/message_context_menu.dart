@@ -262,11 +262,13 @@ class _MenuDivider extends StatelessWidget {
 
 /// Reaction picker popup
 class ReactionPicker extends StatelessWidget {
+  final Offset position;
   final ValueChanged<String>? onReactionSelected;
   final VoidCallback onDismiss;
 
   const ReactionPicker({
     super.key,
+    required this.position,
     this.onReactionSelected,
     required this.onDismiss,
   });
@@ -276,51 +278,82 @@ class ReactionPicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.cuTheme;
+    final screenSize = MediaQuery.of(context).size;
+
+    // Calculate picker width (approximately)
+    const pickerWidth = 280.0;
+    const pickerHeight = 50.0;
+
+    // Calculate position - center horizontally near the message, above or below
+    double left = position.dx - (pickerWidth / 2);
+    double top = position.dy - pickerHeight - 20; // Above the message
+
+    // Adjust horizontal position if off screen
+    if (left < 20) left = 20;
+    if (left + pickerWidth > screenSize.width - 20) {
+      left = screenSize.width - pickerWidth - 20;
+    }
+
+    // If too close to top, show below the message
+    if (top < 100) {
+      top = position.dy + 20;
+    }
+
+    // If too close to bottom, adjust
+    if (top + pickerHeight > screenSize.height - 100) {
+      top = screenSize.height - pickerHeight - 100;
+    }
 
     return GestureDetector(
       onTap: onDismiss,
       child: Container(
         color: Colors.transparent,
-        child: Center(
-          child: Material(
-            color: Colors.transparent,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(theme.radiusFull),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: theme.spacingM,
-                    vertical: theme.spacingS,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.95),
-                    borderRadius: BorderRadius.circular(theme.radiusFull),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.15),
-                        blurRadius: 30,
-                        offset: const Offset(0, 10),
+        child: Stack(
+          children: [
+            Positioned(
+              left: left,
+              top: top,
+              child: Material(
+                color: Colors.transparent,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(theme.radiusFull),
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: theme.spacingM,
+                        vertical: theme.spacingS,
                       ),
-                    ],
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: reactions.map((emoji) {
-                      return _ReactionButton(
-                        emoji: emoji,
-                        onTap: () {
-                          HapticFeedback.selectionClick();
-                          onReactionSelected?.call(emoji);
-                          onDismiss();
-                        },
-                      );
-                    }).toList(),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withValues(alpha: 0.95),
+                        borderRadius: BorderRadius.circular(theme.radiusFull),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withValues(alpha: 0.15),
+                            blurRadius: 30,
+                            offset: const Offset(0, 10),
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: reactions.map((emoji) {
+                          return _ReactionButton(
+                            emoji: emoji,
+                            onTap: () {
+                              HapticFeedback.selectionClick();
+                              onReactionSelected?.call(emoji);
+                              onDismiss();
+                            },
+                          );
+                        }).toList(),
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );
