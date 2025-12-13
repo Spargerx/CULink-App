@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'theme/theme_provider.dart';
 import 'screens/login_screen.dart';
 
 void main() {
@@ -10,15 +11,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'CULink',
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        primarySwatch: Colors.deepPurple,
-        useMaterial3: true,
+    return CULinkThemeProvider(
+      theme: currentTheme,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'CULink',
+        theme: ThemeData(
+          brightness: Brightness.light,
+          fontFamily: currentTheme.bodyFontFamily,
+          scaffoldBackgroundColor: currentTheme.backgroundLight,
+          useMaterial3: true,
+          colorScheme: ColorScheme.light(
+            primary: currentTheme.primaryAccent,
+            secondary: currentTheme.secondaryAccent,
+            surface: currentTheme.backgroundLight,
+          ),
+        ),
+        home: const LoginScreen(),
       ),
-      home: const LoginScreen(),
     );
   }
 }

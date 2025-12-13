@@ -1,6 +1,14 @@
+/// Login Screen
+///
+/// Animated login screen with glassmorphism design.
+/// Navigates to Welcome Screen on sign up.
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../widgets/glass_box.dart';
-import 'home_screen.dart';
+import '../widgets/responsive_button.dart';
+import '../theme/theme_provider.dart';
+import 'welcome_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -95,10 +103,38 @@ class _LoginScreenState extends State<LoginScreen>
     super.dispose();
   }
 
+  void _navigateToWelcome() {
+    HapticFeedback.mediumImpact();
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const WelcomeScreen(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          // iOS-like fade with slight scale
+          var fadeAnimation = CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeOutCubic,
+          );
+          var scaleAnimation = Tween<double>(begin: 0.95, end: 1.0).animate(
+            CurvedAnimation(parent: animation, curve: Curves.easeOutCubic),
+          );
+
+          return FadeTransition(
+            opacity: fadeAnimation,
+            child: ScaleTransition(scale: scaleAnimation, child: child),
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 500),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final theme = context.cuTheme;
+
     return Scaffold(
-      backgroundColor: Colors.grey[900], // Dark background for contrast
+      backgroundColor: theme.backgroundLight,
       body: Stack(
         children: [
           // Animated Background Circles
@@ -114,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen>
                       height: 200,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.deepPurple.withValues(alpha: 0.4),
+                        color: theme.primaryAccent.withValues(alpha: 0.3),
                       ),
                     ),
                   ),
@@ -125,7 +161,7 @@ class _LoginScreenState extends State<LoginScreen>
                       height: 200,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.blueAccent.withValues(alpha: 0.4),
+                        color: theme.secondaryAccent.withValues(alpha: 0.3),
                       ),
                     ),
                   ),
@@ -140,72 +176,74 @@ class _LoginScreenState extends State<LoginScreen>
               width: 350,
               height: 450,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                padding: EdgeInsets.symmetric(horizontal: theme.spacingL),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                       'Hello Again!',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                      style: theme.heading1.copyWith(
                         fontSize: 28,
-                        color: Colors.white,
+                        color: theme.textPrimary,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    SizedBox(height: theme.spacingS),
                     Text(
                       'Welcome back, you\'ve been missed!',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white.withValues(alpha: 0.7),
+                      style: theme.bodyMedium.copyWith(
+                        color: theme.textSecondary,
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    const SizedBox(height: 30),
+                    SizedBox(height: theme.spacingXL),
 
                     // Email TextField
-                    const TextField(
-                      style: TextStyle(color: Colors.white),
+                    TextField(
+                      style: TextStyle(color: theme.textPrimary),
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor: Colors.white10,
+                        fillColor: theme.mutedPrimary.withValues(alpha: 0.5),
                         hintText: 'Email',
-                        hintStyle: TextStyle(color: Colors.white60),
+                        hintStyle: TextStyle(color: theme.textSecondary),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          borderRadius: BorderRadius.circular(
+                            theme.radiusMedium,
+                          ),
                           borderSide: BorderSide.none,
                         ),
                         prefixIcon: Icon(
                           Icons.email_outlined,
-                          color: Colors.white70,
+                          color: theme.textSecondary,
                         ),
                       ),
                     ),
-                    const SizedBox(height: 15),
+                    SizedBox(height: theme.spacingM),
 
                     // Password TextField
                     TextField(
                       obscureText: !_isPasswordVisible,
-                      style: const TextStyle(color: Colors.white),
+                      style: TextStyle(color: theme.textPrimary),
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor: Colors.white10,
+                        fillColor: theme.mutedPrimary.withValues(alpha: 0.5),
                         hintText: 'Password',
-                        hintStyle: const TextStyle(color: Colors.white60),
-                        border: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                        hintStyle: TextStyle(color: theme.textSecondary),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(
+                            theme.radiusMedium,
+                          ),
                           borderSide: BorderSide.none,
                         ),
-                        prefixIcon: const Icon(
+                        prefixIcon: Icon(
                           Icons.lock_outline,
-                          color: Colors.white70,
+                          color: theme.textSecondary,
                         ),
                         suffixIcon: IconButton(
                           icon: Icon(
                             _isPasswordVisible
                                 ? Icons.visibility
                                 : Icons.visibility_off,
-                            color: Colors.white70,
+                            color: theme.textSecondary,
                           ),
                           onPressed: () {
                             setState(() {
@@ -215,63 +253,28 @@ class _LoginScreenState extends State<LoginScreen>
                         ),
                       ),
                     ),
-                    const SizedBox(height: 40),
+                    SizedBox(height: theme.spacingXL + theme.spacingS),
 
                     // Signup Button
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          PageRouteBuilder(
-                            pageBuilder:
-                                (context, animation, secondaryAnimation) =>
-                                    const HomeScreen(),
-                            transitionsBuilder:
-                                (
-                                  context,
-                                  animation,
-                                  secondaryAnimation,
-                                  child,
-                                ) {
-                                  // Fade Transition
-                                  var fadeAnimation =
-                                      Tween(begin: 0.0, end: 1.0).animate(
-                                        CurvedAnimation(
-                                          parent: animation,
-                                          curve: Curves.easeOut,
-                                        ),
-                                      );
-
-                                  return FadeTransition(
-                                    opacity: fadeAnimation,
-                                    child: child,
-                                  );
-                                },
-                            transitionDuration: const Duration(
-                              milliseconds: 800,
-                            ),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ResponsiveButton(
+                        onTap: _navigateToWelcome,
+                        backgroundColor: theme.primaryAccent,
+                        borderRadius: BorderRadius.circular(theme.radiusMedium),
+                        padding: EdgeInsets.all(theme.spacingM),
+                        boxShadow: [
+                          BoxShadow(
+                            color: theme.primaryAccent.withValues(alpha: 0.5),
+                            spreadRadius: 1,
+                            blurRadius: 15,
+                            offset: const Offset(0, 5),
                           ),
-                        );
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          color: Colors.deepPurpleAccent,
-                          borderRadius: BorderRadius.circular(15),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.deepPurpleAccent.withValues(
-                                alpha: 0.5,
-                              ),
-                              spreadRadius: 1,
-                              blurRadius: 15,
-                              offset: const Offset(0, 5),
-                            ),
-                          ],
-                        ),
-                        child: const Center(
+                        ],
+                        child: Center(
                           child: Text(
                             'Sign Up',
-                            style: TextStyle(
+                            style: theme.labelMedium.copyWith(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
