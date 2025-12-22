@@ -87,7 +87,7 @@ class _VibeMatchCardState extends State<VibeMatchCard>
                     Image.network(
                       data.imageUrl,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => Container(
+                      errorBuilder: (context, error, stackTrace) => Container(
                         color: theme.mutedPrimary,
                         child: Icon(
                           Icons.person,

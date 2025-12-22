@@ -189,7 +189,7 @@ class _ConnectionsScreenState extends State<ConnectionsScreen> {
                       physics: const BouncingScrollPhysics(),
                       padding: EdgeInsets.symmetric(horizontal: theme.spacingL),
                       itemCount: friendRequests.length,
-                      separatorBuilder: (_, __) =>
+                      separatorBuilder: (context, index) =>
                           SizedBox(width: theme.spacingM),
                       itemBuilder: (context, index) {
                         return FriendRequestCard(

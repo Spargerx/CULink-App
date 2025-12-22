@@ -3,7 +3,6 @@
 // A glassmorphic card for displaying feed posts.
 // Includes user info, image, title, description, and interactions.
 
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../theme/theme_provider.dart';
 import 'responsive_button.dart';

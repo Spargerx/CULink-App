@@ -95,7 +95,8 @@ class SearchHeader extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               padding: EdgeInsets.symmetric(horizontal: theme.spacingL),
               itemCount: filters.length,
-              separatorBuilder: (_, __) => SizedBox(width: theme.spacingS),
+              separatorBuilder: (context, index) =>
+                  SizedBox(width: theme.spacingS),
               itemBuilder: (context, index) {
                 final isSelected = index == selectedFilterIndex;
                 return _FilterChip(

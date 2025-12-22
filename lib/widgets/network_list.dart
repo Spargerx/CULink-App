@@ -28,7 +28,7 @@ class NetworkList extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       padding: EdgeInsets.zero,
       itemCount: members.length,
-      separatorBuilder: (_, __) => SizedBox(height: theme.spacingS),
+      separatorBuilder: (context, index) => SizedBox(height: theme.spacingS),
       itemBuilder: (context, index) {
         return NetworkMemberTile(
           member: members[index],
@@ -126,13 +126,14 @@ class _NetworkMemberTileState extends State<NetworkMemberTile>
                           child: Image.network(
                             member.avatarUrl,
                             fit: BoxFit.cover,
-                            errorBuilder: (_, __, ___) => Container(
-                              color: theme.mutedPrimary,
-                              child: Icon(
-                                Icons.person,
-                                color: theme.textSecondary,
-                              ),
-                            ),
+                            errorBuilder: (context, error, stackTrace) =>
+                                Container(
+                                  color: theme.mutedPrimary,
+                                  child: Icon(
+                                    Icons.person,
+                                    color: theme.textSecondary,
+                                  ),
+                                ),
                           ),
                         ),
                       ),

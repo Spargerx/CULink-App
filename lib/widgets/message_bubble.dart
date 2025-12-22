@@ -3,7 +3,6 @@
 // Chat message bubbles with distinct styles for incoming/outgoing.
 // Features smart stacking, reactions, swipe-to-reveal timestamps.
 
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../theme/theme_provider.dart';

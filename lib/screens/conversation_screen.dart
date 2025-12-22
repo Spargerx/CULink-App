@@ -379,7 +379,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
                   child: Image.network(
                     widget.avatarUrl,
                     fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => Icon(
+                    errorBuilder: (context, error, stackTrace) => Icon(
                       Icons.person,
                       color: theme.secondaryAccent,
                       size: 30,
@@ -469,7 +469,9 @@ class _ConversationScreenState extends State<ConversationScreen> {
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 150),
             curve: Curves.easeOutCubic,
-            transform: Matrix4.identity()..scale(isSelected ? 0.97 : 1.0),
+            transform: isSelected
+                ? Matrix4.diagonal3Values(0.97, 0.97, 1.0)
+                : Matrix4.identity(),
             transformAlignment: Alignment.center,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(24),

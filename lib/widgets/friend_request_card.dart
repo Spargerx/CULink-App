@@ -104,14 +104,15 @@ class _FriendRequestCardState extends State<FriendRequestCard>
                             child: Image.network(
                               request.avatarUrl,
                               fit: BoxFit.cover,
-                              errorBuilder: (_, __, ___) => Container(
-                                color: theme.mutedPrimary,
-                                child: Icon(
-                                  Icons.person,
-                                  color: theme.textSecondary,
-                                  size: 28,
-                                ),
-                              ),
+                              errorBuilder: (context, error, stackTrace) =>
+                                  Container(
+                                    color: theme.mutedPrimary,
+                                    child: Icon(
+                                      Icons.person,
+                                      color: theme.textSecondary,
+                                      size: 28,
+                                    ),
+                                  ),
                             ),
                           ),
                         ),
