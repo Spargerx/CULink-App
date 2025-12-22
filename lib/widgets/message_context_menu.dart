@@ -1,7 +1,7 @@
-/// Message Context Menu Widget
-///
-/// Floating glassmorphic contextual menu for message actions.
-/// Appears on long-press, never uses bottom sheet.
+// Message Context Menu Widget
+//
+// Floating glassmorphic contextual menu for message actions.
+// Appears on long-press, never uses bottom sheet.
 
 import 'dart:ui';
 import 'package:flutter/material.dart';

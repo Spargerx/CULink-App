@@ -1,7 +1,7 @@
-/// Glass Box Widget
-///
-/// A glassmorphism container with blur effect and gradient overlay.
-/// Used for cards and overlays with a premium look.
+// Glass Box Widget
+//
+// A glassmorphism container with blur effect and gradient overlay.
+// Used for cards and overlays with a premium look.
 
 import 'dart:ui';
 import 'package:flutter/material.dart';

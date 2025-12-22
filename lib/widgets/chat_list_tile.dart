@@ -1,7 +1,7 @@
-/// Chat List Tile Widget
-///
-/// Individual message row with avatar, name, status, and timestamp.
-/// Supports swipe actions and typing indicators.
+// Chat List Tile Widget
+//
+// Individual message row with avatar, name, status, and timestamp.
+// Supports swipe actions and typing indicators.
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -124,14 +124,15 @@ class _ChatListTileState extends State<ChatListTile>
                           child: Image.network(
                             chat.avatarUrl,
                             fit: BoxFit.cover,
-                            errorBuilder: (_, __, ___) => Container(
-                              color: theme.mutedPrimary,
-                              child: Icon(
-                                Icons.person,
-                                color: theme.textSecondary,
-                                size: 28,
-                              ),
-                            ),
+                            errorBuilder: (context, error, stackTrace) =>
+                                Container(
+                                  color: theme.mutedPrimary,
+                                  child: Icon(
+                                    Icons.person,
+                                    color: theme.textSecondary,
+                                    size: 28,
+                                  ),
+                                ),
                           ),
                         ),
                       ),

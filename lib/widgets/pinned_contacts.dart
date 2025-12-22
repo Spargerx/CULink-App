@@ -1,7 +1,7 @@
-/// Pinned Contacts Widget
-///
-/// Horizontal row of favorite/pinned contacts for quick access.
-/// Shows large avatars with names below.
+// Pinned Contacts Widget
+//
+// Horizontal row of favorite/pinned contacts for quick access.
+// Shows large avatars with names below.
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -30,7 +30,7 @@ class PinnedContactsRow extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         padding: EdgeInsets.symmetric(horizontal: theme.spacingL),
         itemCount: contacts.length > 4 ? 4 : contacts.length,
-        separatorBuilder: (_, __) => SizedBox(width: theme.spacingL),
+        separatorBuilder: (context, index) => SizedBox(width: theme.spacingL),
         itemBuilder: (context, index) {
           return PinnedContactItem(
             contact: contacts[index],
@@ -116,7 +116,7 @@ class _PinnedContactItemState extends State<PinnedContactItem>
                     child: Image.network(
                       contact.avatarUrl,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => Container(
+                      errorBuilder: (context, error, stackTrace) => Container(
                         color: theme.mutedPrimary,
                         child: Icon(
                           Icons.person,

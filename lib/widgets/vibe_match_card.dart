@@ -1,7 +1,7 @@
-/// Vibe Match Card Widget
-///
-/// Bento grid card for discovering new connections.
-/// Features full-bleed photography with gradient overlay.
+// Vibe Match Card Widget
+//
+// Bento grid card for discovering new connections.
+// Features full-bleed photography with gradient overlay.
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
@@ -87,7 +87,7 @@ class _VibeMatchCardState extends State<VibeMatchCard>
                     Image.network(
                       data.imageUrl,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => Container(
+                      errorBuilder: (context, error, stackTrace) => Container(
                         color: theme.mutedPrimary,
                         child: Icon(
                           Icons.person,

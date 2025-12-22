@@ -1,7 +1,7 @@
-/// Connections Screen
-///
-/// Friends and connections page with search, friend requests,
-/// vibe match discovery, and network list.
+// Connections Screen
+//
+// Friends and connections page with search, friend requests,
+// vibe match discovery, and network list.
 
 import 'package:flutter/material.dart';
 import '../theme/theme_provider.dart';
@@ -189,7 +189,7 @@ class _ConnectionsScreenState extends State<ConnectionsScreen> {
                       physics: const BouncingScrollPhysics(),
                       padding: EdgeInsets.symmetric(horizontal: theme.spacingL),
                       itemCount: friendRequests.length,
-                      separatorBuilder: (_, __) =>
+                      separatorBuilder: (context, index) =>
                           SizedBox(width: theme.spacingM),
                       itemBuilder: (context, index) {
                         return FriendRequestCard(

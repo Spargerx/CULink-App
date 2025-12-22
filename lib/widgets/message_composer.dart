@@ -1,7 +1,7 @@
-/// Message Composer Widget
-///
-/// Floating input field with send button that moves as a single unit.
-/// Keyboard-aware with smooth animations.
+// Message Composer Widget
+//
+// Floating input field with send button that moves as a single unit.
+// Keyboard-aware with smooth animations.
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

@@ -1,7 +1,7 @@
-/// Home Feed Screen
-///
-/// Main feed screen with stories row, post cards, and floating navigation.
-/// Uses the Earthy Elegance theme for styling.
+// Home Feed Screen
+//
+// Main feed screen with stories row, post cards, and floating navigation.
+// Uses the Earthy Elegance theme for styling.
 
 import 'package:flutter/material.dart';
 import '../theme/theme_provider.dart';

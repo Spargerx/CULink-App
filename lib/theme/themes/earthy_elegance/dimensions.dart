@@ -1,6 +1,6 @@
-/// Earthy Elegance Theme - Dimensions
-///
-/// Consistent spacing, sizing, and border radius values for UI elements.
+// Earthy Elegance Theme - Dimensions
+//
+// Consistent spacing, sizing, and border radius values for UI elements.
 
 class EarthyDimensions {
   // Border radius

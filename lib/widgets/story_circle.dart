@@ -1,7 +1,7 @@
-/// Story Circle Widget
-///
-/// Circular avatar with gradient ring for stories.
-/// Supports "My Story" variant with add button.
+// Story Circle Widget
+//
+// Circular avatar with gradient ring for stories.
+// Supports "My Story" variant with add button.
 
 import 'package:flutter/material.dart';
 import '../theme/theme_provider.dart';

@@ -1,6 +1,6 @@
-/// Chat Header Widget
-///
-/// Frosted glass sticky header with user info and activity status.
+// Chat Header Widget
+//
+// Frosted glass sticky header with user info and activity status.
 
 import 'dart:ui';
 import 'package:flutter/material.dart';
@@ -93,7 +93,7 @@ class ChatHeader extends StatelessWidget {
                     child: Image.network(
                       avatarUrl,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => Container(
+                      errorBuilder: (context, error, stackTrace) => Container(
                         color: theme.mutedPrimary,
                         child: Icon(Icons.person, color: theme.textSecondary),
                       ),
