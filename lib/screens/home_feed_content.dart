@@ -1,7 +1,7 @@
-/// Home Feed Content
-///
-/// Feed content without navigation bar (used inside MainShellScreen).
-/// Shows stories row and post cards.
+// Home Feed Content
+//
+// Feed content without navigation bar (used inside MainShellScreen).
+// Shows stories row and post cards.
 
 import 'package:flutter/material.dart';
 import '../theme/theme_provider.dart';

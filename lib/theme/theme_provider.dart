@@ -1,7 +1,7 @@
-/// CULink Theme Provider
-///
-/// Provides theme access throughout the app using InheritedWidget pattern.
-/// To switch themes, change the import below to point to a different theme.
+// CULink Theme Provider
+//
+// Provides theme access throughout the app using InheritedWidget pattern.
+// To switch themes, change the import below to point to a different theme.
 
 import 'package:flutter/material.dart';
 import 'theme_config.dart';

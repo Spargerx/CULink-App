@@ -1,7 +1,7 @@
-/// Earthy Elegance Theme - Colors
-///
-/// A warm, sophisticated color palette inspired by earth tones.
-/// Features terracotta and sage as primary accents with soft neutrals.
+// Earthy Elegance Theme - Colors
+//
+// A warm, sophisticated color palette inspired by earth tones.
+// Features terracotta and sage as primary accents with soft neutrals.
 
 import 'package:flutter/material.dart';
 

@@ -1,7 +1,7 @@
-/// Segmented Control Widget
-///
-/// A pill-shaped segmented control with sliding active indicator.
-/// Used for switching between Direct and Groups in chat.
+// Segmented Control Widget
+//
+// A pill-shaped segmented control with sliding active indicator.
+// Used for switching between Direct and Groups in chat.
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

@@ -1,7 +1,7 @@
-/// Search Header Widget
-///
-/// Floating pill-shaped search bar with frosted glass effect.
-/// Includes horizontally scrollable filter chips.
+// Search Header Widget
+//
+// Floating pill-shaped search bar with frosted glass effect.
+// Includes horizontally scrollable filter chips.
 
 import 'dart:ui';
 import 'package:flutter/material.dart';

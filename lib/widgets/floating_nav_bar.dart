@@ -1,7 +1,7 @@
-/// Floating Navigation Bar Widget
-///
-/// iOS-style floating bottom navigation with glassmorphism effect.
-/// Features animated active state and notification badges.
+// Floating Navigation Bar Widget
+//
+// iOS-style floating bottom navigation with glassmorphism effect.
+// Features animated active state and notification badges.
 
 import 'dart:ui';
 import 'package:flutter/material.dart';

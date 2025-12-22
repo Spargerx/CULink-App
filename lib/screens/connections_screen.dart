@@ -1,7 +1,7 @@
-/// Connections Screen
-///
-/// Friends and connections page with search, friend requests,
-/// vibe match discovery, and network list.
+// Connections Screen
+//
+// Friends and connections page with search, friend requests,
+// vibe match discovery, and network list.
 
 import 'package:flutter/material.dart';
 import '../theme/theme_provider.dart';

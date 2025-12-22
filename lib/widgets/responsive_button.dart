@@ -1,7 +1,7 @@
-/// Responsive Button Widget
-///
-/// A button with iOS-like press animation (scale down/up with spring).
-/// Supports haptic feedback and custom styling.
+// Responsive Button Widget
+//
+// A button with iOS-like press animation (scale down/up with spring).
+// Supports haptic feedback and custom styling.
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

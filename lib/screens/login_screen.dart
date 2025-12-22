@@ -1,7 +1,7 @@
-/// Login Screen
-///
-/// Animated login screen with glassmorphism design.
-/// Navigates to Welcome Screen on sign up.
+// Login Screen
+//
+// Animated login screen with glassmorphism design.
+// Navigates to Welcome Screen on sign up.
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

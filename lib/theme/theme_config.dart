@@ -1,7 +1,7 @@
-/// CULink Theme Configuration
-///
-/// This file defines the core theme interface that all themes must implement.
-/// To switch themes, change the import in theme_provider.dart to point to a different theme.
+// CULink Theme Configuration
+//
+// This file defines the core theme interface that all themes must implement.
+// To switch themes, change the import in theme_provider.dart to point to a different theme.
 
 import 'package:flutter/material.dart';
 

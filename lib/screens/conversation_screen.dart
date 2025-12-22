@@ -1,7 +1,7 @@
-/// Conversation Screen
-///
-/// Individual chat conversation with immersive header,
-/// message stream, and floating composer.
+// Conversation Screen
+//
+// Individual chat conversation with immersive header,
+// message stream, and floating composer.
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

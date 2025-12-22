@@ -1,7 +1,7 @@
-/// Pinned Contacts Widget
-///
-/// Horizontal row of favorite/pinned contacts for quick access.
-/// Shows large avatars with names below.
+// Pinned Contacts Widget
+//
+// Horizontal row of favorite/pinned contacts for quick access.
+// Shows large avatars with names below.
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

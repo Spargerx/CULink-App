@@ -1,7 +1,7 @@
-/// Earthy Elegance Theme - Typography
-///
-/// Uses Playfair Display for elegant headings and Inter for clean body text.
-/// Optimized for readability and visual hierarchy.
+// Earthy Elegance Theme - Typography
+//
+// Uses Playfair Display for elegant headings and Inter for clean body text.
+// Optimized for readability and visual hierarchy.
 
 import 'package:flutter/material.dart';
 import 'colors.dart';

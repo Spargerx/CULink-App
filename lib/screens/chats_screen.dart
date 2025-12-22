@@ -1,7 +1,7 @@
-/// Chats Screen
-///
-/// Direct Messages and Group chats screen.
-/// Features segmented control, pinned contacts, and message list.
+// Chats Screen
+//
+// Direct Messages and Group chats screen.
+// Features segmented control, pinned contacts, and message list.
 
 import 'dart:ui';
 import 'package:flutter/material.dart';

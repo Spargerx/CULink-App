@@ -1,7 +1,7 @@
-/// Earthy Elegance Theme - Animations
-///
-/// iOS-like spring animations and smooth transitions.
-/// Provides natural, responsive feel to all interactions.
+// Earthy Elegance Theme - Animations
+//
+// iOS-like spring animations and smooth transitions.
+// Provides natural, responsive feel to all interactions.
 
 import 'package:flutter/material.dart';
 

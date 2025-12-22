@@ -1,7 +1,7 @@
-/// Friend Request Card Widget
-///
-/// Ticket-style card for pending friend requests.
-/// Features dashed perforation separating user info from actions.
+// Friend Request Card Widget
+//
+// Ticket-style card for pending friend requests.
+// Features dashed perforation separating user info from actions.
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

@@ -1,7 +1,7 @@
-/// Event Card Widget
-///
-/// Embedded invite/event card for meetups and plans.
-/// Appears as a special message bubble in conversations.
+// Event Card Widget
+//
+// Embedded invite/event card for meetups and plans.
+// Appears as a special message bubble in conversations.
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

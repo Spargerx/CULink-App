@@ -1,7 +1,7 @@
-/// Post Card Widget
-///
-/// A glassmorphic card for displaying feed posts.
-/// Includes user info, image, title, description, and interactions.
+// Post Card Widget
+//
+// A glassmorphic card for displaying feed posts.
+// Includes user info, image, title, description, and interactions.
 
 import 'dart:ui';
 import 'package:flutter/material.dart';

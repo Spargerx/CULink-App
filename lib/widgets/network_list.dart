@@ -1,7 +1,7 @@
-/// Network List Widget
-///
-/// Clean vertical list showing connected friends.
-/// Features status indicators and chat action.
+// Network List Widget
+//
+// Clean vertical list showing connected friends.
+// Features status indicators and chat action.
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

@@ -1,7 +1,7 @@
-/// Welcome Screen
-///
-/// Animated welcome message displayed after login.
-/// Auto-navigates to Home Feed after 1.5 seconds.
+// Welcome Screen
+//
+// Animated welcome message displayed after login.
+// Auto-navigates to Home Feed after 1.5 seconds.
 
 import 'package:flutter/material.dart';
 import '../theme/theme_provider.dart';

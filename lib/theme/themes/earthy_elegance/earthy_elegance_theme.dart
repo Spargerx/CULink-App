@@ -1,7 +1,7 @@
-/// Earthy Elegance Theme
-///
-/// The main theme class that combines all theme components.
-/// To switch themes, create a new theme class implementing CULinkThemeData.
+// Earthy Elegance Theme
+//
+// The main theme class that combines all theme components.
+// To switch themes, create a new theme class implementing CULinkThemeData.
 
 import 'package:flutter/material.dart';
 import '../../theme_config.dart';

@@ -1,6 +1,6 @@
-/// Chat Header Widget
-///
-/// Frosted glass sticky header with user info and activity status.
+// Chat Header Widget
+//
+// Frosted glass sticky header with user info and activity status.
 
 import 'dart:ui';
 import 'package:flutter/material.dart';

@@ -1,7 +1,7 @@
-/// Main Shell Screen
-///
-/// Root screen that handles navigation between different tabs.
-/// Contains the floating nav bar and manages page switching.
+// Main Shell Screen
+//
+// Root screen that handles navigation between different tabs.
+// Contains the floating nav bar and manages page switching.
 
 import 'package:flutter/material.dart';
 import '../theme/theme_provider.dart';
